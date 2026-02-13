@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>untuk dedee · dari kakaaa</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Quicksand', sans-serif;
+            background: #f9e5e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: background-color 0.6s ease;
+        }
+
+        /* BACKGROUND BERUBAH (soft pink theme) */
+        body.bg-1 { background: #fce4e8; }
+        body.bg-2 { background: #fde0e6; }
+        body.bg-3 { background: #ffd9e0; }
+        body.bg-4 { background: #fde3e9; }
+        body.bg-5 { background: #fce7ec; }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 40px 45px;
+            box-shadow: 0 30px 60px rgba(255, 150, 180, 0.2), 0 0 0 1px rgba(255, 200, 210, 0.6) inset;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .judul-utama {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ff8a9f, #ffb6c1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .sub-judul {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: #c47a8d;
+            font-weight: 400;
+        }
+
+        /* ===== SLIDER ===== */
+        .slider-container {
+            position: relative;
+            margin-bottom: 35px;
+            overflow: hidden;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(255, 150, 170, 0.25);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 35px 40px;
+            background: rgba(255, 245, 250, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        .slide-image {
+            flex: 1;
+            height: 320px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(200, 120, 140, 0.3);
+            border: 3px solid white;
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .slide-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .slide-content {
+            flex: 1;
+            padding: 10px 20px;
+        }
+
+        .slide-caption {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #c08a9a;
+            margin-bottom: 15px;
+            border-left: 4px solid #f9a8b8;
+            padding-left: 15px;
+        }
+
+        .slide-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #4f3a42;
+            font-weight: 500;
+            white-space: pre-line;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .slide-text i {
+            color: #f7658b;
+            font-size: 1.5rem;
+        }
+
+        /* ===== CONTROLS ===== */
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 120, 150, 0.3);
+            color: #f7658b;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 2px solid #ffc0cb;
+        }
+
+        .nav-btn:hover {
+            background: #ffb6c1;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .dots {
+            display: flex;
+            gap: 15px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #fcc6d2;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #f78ba0;
+        }
+
+        .dot.active {
+            width: 35px;
+            border-radius: 30px;
+            background: #f7658b;
+            border-color: #f54e7a;
+        }
+
+        /* ===== GALERI 3 FOTO ===== */
+        .gallery-section {
+            margin-top: 45px;
+            border-top: 2px dashed #fbc1ce;
+            padding-top: 35px;
+        }
+
+        .gallery-title {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #c47a8d;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .gallery-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .gallery-item {
+            width: 160px;
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 3px solid white;
+            box-shadow: 0 10px 25px rgba(255, 130, 160, 0.3);
+            transition: all 0.3s;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .gallery-caption {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #b35f7a;
+        }
+
+        /* ===== AUDIO ===== */
+        .audio-section {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+            height: 45px;
+            border-radius: 50px;
+            background: #ffeef2;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #e06f8f;
+            border-top: 1px dashed #fac1cf;
+            padding-top: 25px;
+        }
+
+        @media (max-width: 700px) {
+            .slide {
+                flex-direction: column;
+            }
+            .slide-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-1">
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="judul-utama">buat dedee sayang</div>
+            <div class="sub-judul">dari kakaaa · valentine 2026</div>
+        </div>
+
+        <!-- SLIDER UTAMA -->
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
+                <!-- SLIDE 1 — TEKS DARI TUANKU -->
+                <div class="slide" data-bg="bg-1">
+                    <div class="slide-image">
+                        <img src="foto1.jpg" alt="dedee">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-caption">💌 pesan pertama</div>
+                        <div class="slide-text">
+                            happy valentine dedeee cayaanggg, makasii ya udahh mau jadii dedee nya kakaaa. jangan bosen bosen yapping yaaa. maafiinn kakaaa yaa kalo misalnyaa kaka banyaakk ngambek sama dedeee. 
+                            <br><br>
+                            <i class="fas fa-heart"></i> SAYANGG DEDEE <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 2 — MANJA LAGI -->
+                <div class="slide" data-bg="bg-2">
+                    <div class="slide-image">
+                        <img src="foto2.jpg" alt="dedee">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-caption">💬 cerita kita</div>
+                        <div class="slide-text">
+                            dedee tauu gaa? kaka tuh sukaaa banget dengerin cerita dedee. apalagi kalo dedee ngelucu, kaka sampe ngakak sendiri. makasii udah selalu ada buat kaka, yaa.
+                            <br><br>
+                            <i class="fas fa-heart"></i> love u dedee <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 3 — MANJA LAGI -->
+                <div class="slide" data-bg="bg-3">
+                    <div class="slide-image">
+                        <img src="foto3.jpg" alt="dedee">
+                    </div>
+                    <div class="slide-content">
+                        <div class="slide-caption">✨ selamanya</div>
+                        <div class="slide-text">
+                            kaka harap kitaa selalu begini, yaa. dedee jadi adek paling sayang, kaka jadi kakak paling bangga. janji yaaa gakan bosen sama kaka.
+                            <br><br>
+                            <i class="fas fa-heart"></i> sayanggg dedee <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="slider-controls">
+            <button class="nav-btn" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+            <div class="dots" id="dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="nav-btn" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <!-- GALERI 3 FOTO MINI -->
+        <div class="gallery-section">
+            <div class="gallery-title">2 kalimat buat dedeee</div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="foto1.jpg" alt="dedee">
+                    <div class="gallery-caption">💗 kakaa sayangg samaa dedeee</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="foto2.jpg" alt="dedee">
+                    <div class="gallery-caption">💗 selamanyaaaa</div>
+              
+            </div>
+        </div>
+
+        <!-- AUDIO -->
+        <div class="audio-section">
+            <audio id="lagu" controls loop>
+                <source src="laguu.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            ✻ dari kakaaa, untuk dedee tersayang ✻
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        (function() {
+            const sliderTrack = document.getElementById('sliderTrack');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            const dots = document.querySelectorAll('.dot');
+            const body = document.body;
+            
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            function updateSlide(index) {
+                sliderTrack.style.transform = `translateX(-${index * 100}%)`;
+                const newBg = slides[index].getAttribute('data-bg');
+                body.className = '';
+                body.classList.add(newBg);
+                dots.forEach((dot, i) => {
+                    if (i === index) dot.classList.add('active');
+                    else dot.classList.remove('active');
+                });
+            }
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlide(currentIndex);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlide(currentIndex);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlide(currentIndex);
+                });
+            });
+
+            const audio = document.getElementById('lagu');
+            if (audio) audio.volume = 0.5;
+        })();
+    </script>
+</body>
+</html>
